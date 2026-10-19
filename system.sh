@@ -9,6 +9,7 @@ name=$(grep '^model name' /proc/cpuinfo | head -n 1 | cut -d: -f2)
 echo "Model procesora: ${name}"
 ncpu=$(grep '^model name' /proc/cpuinfo | wc -l)
 printf "Liczba procesorów: %d\n" ${ncpu}
+LC_ALL=C awk '/^MemTotal/{printf("Pamięć RAM w KiB (GiB): %d (%.4f)\n", $2, $2/2^20)}'  /proc/meminfo
 
 
 
